@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑学生信息</title>
+    <link href="https://fastly.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">编辑学生信息</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="post" class="border p-4 rounded bg-light">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.student_id.label_tag }}
+                        {{ form.student_id }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.birthday.label_tag }}
+                        {{ form.birthday }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.gender.label_tag }}
+                        {{ form.gender }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.phone.label_tag }}
+                        {{ form.phone }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.address.label_tag }}
+                        {{ form.address }}
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">保存</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://fastly.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
