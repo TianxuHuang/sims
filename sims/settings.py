@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',       # 消息系统
     'django.contrib.staticfiles',    # 静态文件管理
     'student',                       # 自定义学生应用
+    'classes',                       # 班级应用
 ]
 
 MIDDLEWARE = [
