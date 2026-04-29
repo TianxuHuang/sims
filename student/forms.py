@@ -21,6 +21,7 @@ class StudentForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'address': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'avatar': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'class_field': forms.Select(attrs={'class': 'form-select'}),
         }
         labels = {
             'student_id': '学号',
@@ -31,4 +32,5 @@ class StudentForm(forms.ModelForm):
             'email': '邮箱',
             'address': '家庭地址',
             'avatar': '头像',
+            'class_field': '班级',
         }

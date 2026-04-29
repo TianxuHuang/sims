@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from .forms import StudentForm
 from .models import Student
+from classes.models import Class
 
 
 def list_student(request):
@@ -10,6 +11,7 @@ def list_student(request):
     name = request.GET.get('name', '')
     phone = request.GET.get('phone', '')
     gender = request.GET.get('gender', '')
+    class_field = request.GET.get('class_field', '')
     
     # 构建查询
     students = Student.objects.all()
@@ -26,9 +28,16 @@ def list_student(request):
     if gender:
         students = students.filter(gender=gender)
     
+    # 按班级进行精确查询
+    if class_field:
+        students = students.filter(class_field_id=class_field)
+    
     paginator = Paginator(students, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    
+    # 获取所有班级用于下拉选择
+    classes = Class.objects.all()
     
     # 传递查询参数给模板
     context = {
@@ -36,7 +45,9 @@ def list_student(request):
         'student_id': student_id,
         'name': name,
         'phone': phone,
-        'gender': gender
+        'gender': gender,
+        'class_field': class_field,
+        'classes': classes
     }
     
     return render(request, 'student/list_student.html', context)
