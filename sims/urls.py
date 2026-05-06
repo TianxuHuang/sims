@@ -31,4 +31,6 @@ urlpatterns = [
     path('student/', include('student.urls')),
     # 班级应用的 URL 路由
     path('classes/', include('classes.urls')),
+    # 课程应用的 URL 路由
+    path('course/', include('course.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # 静态媒体文件 URL 配置
