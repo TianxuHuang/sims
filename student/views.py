@@ -85,3 +85,5 @@ def delete_student(request, pk):
         return redirect('student:list_student')
     return render(request, 'student/delete_student.html', {'student': student})
 
+def home(request):
+    return render(request, 'home.html')

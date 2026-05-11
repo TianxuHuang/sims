@@ -59,7 +59,7 @@ ROOT_URLCONF = 'sims.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',  # 模板引擎
-        'DIRS': [],  # 模板目录
+        'DIRS': [BASE_DIR / 'templates'],  # 模板目录
         'APP_DIRS': True,  # 是否在应用目录中查找模板
         'OPTIONS': {
             'context_processors': [  # 上下文处理器

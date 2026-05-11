@@ -25,8 +25,8 @@ from student import views
 urlpatterns = [
     # 管理后台 URL
     path('admin/', admin.site.urls),
-    # 默认首页 - 显示学生列表
-    path('', views.list_student, name='home'),
+    # 默认首页 - 导航首页
+    path('', views.home, name='home'),
     # 学生应用的 URL 路由
     path('student/', include('student.urls')),
     # 班级应用的 URL 路由
