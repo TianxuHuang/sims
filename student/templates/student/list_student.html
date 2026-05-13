@@ -83,6 +83,7 @@
                         <td>{{ student.email }}</td>
                         <td>{{ student.address }}</td>
                         <td>
+                            <a href="{% url 'student:enroll_course' student.pk %}" class="btn btn-sm btn-info">选课</a>
                             <a href="{% url 'student:edit_student' student.pk %}" class="btn btn-sm btn-warning">编辑</a>
                             <a href="{% url 'student:delete_student' student.pk %}" class="btn btn-sm btn-danger">删除</a>
                         </td>

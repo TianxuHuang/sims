@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生选课</title>
+    <link href="https://fastly.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">为学生选课</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">学生信息</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>学号：</strong>{{ student.student_id }}</p>
+                <p><strong>姓名：</strong>{{ student.name }}</p>
+                <p><strong>班级：</strong>{{ student.class_field.name|default:"未分配" }}</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="post" class="border p-4 rounded bg-light">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label"><strong>选择课程</strong></label>
+                        <div class="row">
+                            {% for course in all_courses %}
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="courses" value="{{ course.pk }}" id="course_{{ course.pk }}" {% if course in enrolled_courses %}checked{% endif %}>
+                                    <label class="form-check-label" for="course_{{ course.pk }}">
+                                        {{ course.name }} - {{ course.credits }}学分
+                                    </label>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="col-12">
+                                <p class="text-muted">暂无课程可供选择</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">保存选课</button>
+                        <a href="{% url 'student:list_student' %}" class="btn btn-secondary">返回学生列表</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://fastly.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

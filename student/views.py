@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from .forms import StudentForm
 from .models import Student
 from classes.models import Class
+from course.models import Course
 
 
 def list_student(request):
@@ -87,3 +88,22 @@ def delete_student(request, pk):
 
 def home(request):
     return render(request, 'home.html')
+
+
+def enroll_course(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    all_courses = Course.objects.all()
+    enrolled_courses = student.courses.all()
+    
+    if request.method == 'POST':
+        course_ids = request.POST.getlist('courses')
+        student.courses.set(course_ids)
+        student.save()
+        return redirect('student:list_student')
+    
+    context = {
+        'student': student,
+        'all_courses': all_courses,
+        'enrolled_courses': enrolled_courses
+    }
+    return render(request, 'student/enroll_course.html', context)

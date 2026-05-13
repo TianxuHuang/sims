@@ -15,6 +15,7 @@ class Student(models.Model):
     address = models.CharField(max_length=200, verbose_name='家庭地址')
     avatar = models.ImageField(upload_to='avatars/', verbose_name='头像', blank=True, null=True)
     class_field = models.ForeignKey('classes.Class', on_delete=models.SET_NULL, verbose_name='班级', blank=True, null=True, related_name='students')
+    courses = models.ManyToManyField('course.Course', verbose_name='所选课程', blank=True, related_name='students')
     
     class Meta:
         verbose_name = '学生'
